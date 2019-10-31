@@ -1,0 +1,11 @@
+<% if logged_in? %>
+  <%= render 'posts/posts', posts: @posts %> 
+<% else %>
+  <div class="jumbotron">
+    <div class="text-center">
+      <h1>Didit.</h1>
+      <p>Post today`s workout.</p>
+      <%= link_to 'Show post', posts_path, :style=>"color:gray;"  %>
+    </div>
+  </div>
+<% end %>

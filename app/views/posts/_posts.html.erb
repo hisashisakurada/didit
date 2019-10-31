@@ -1,0 +1,35 @@
+<ul class="list-unstyled">
+  <% posts.each do |post| %>
+    <li class="media mb-3">
+      <%= image_tag post.user.image.thumb50.url if post.user.image? %>
+      <div class="media-body">
+        <div>
+          <%= link_to post.user.name, user_path(post.user) %> <span class="text-muted">posted at <%= post.created_at %></span>
+        </div>
+        <div>
+          <p><%= post.menu %>×<%= post.weight %>×<%= post.counts %>×<%= post.set %><p>
+          <%= post.comment %>
+          <span class="text-muted">posted at <%= post.created_at %></span>
+        </div>
+        <div class='btn-group'>
+          <% if current_user == post.user %>
+            <%= link_to 'Delete', post, method: :delete, data: { confirm: 'you sure' }, class: 'btn btn-danger btn-sm' %>
+          <% end %>
+          <% if logged_in? %>
+            <% if current_user.favpost?(post) %>
+              <%= form_with(model: current_user.favorites.find_by(post_id: post.id), local: true, method: :delete) do |f| %>
+              <%= hidden_field_tag :post_id, post.id %>
+                <%= f.submit 'unlike', class: 'btn btn-danger btn-sm' %>
+            <% end %>
+          <% else %>
+            <%= form_with(model: current_user.favorites.build, local: true) do |f| %>
+              <%= hidden_field_tag :post_id, post.id %>
+                <%= f.submit 'like', class: 'btn btn-primary btn-sm' %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>
