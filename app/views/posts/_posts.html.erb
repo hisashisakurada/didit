@@ -1,16 +1,13 @@
-<ul class="list-unstyled">
+<div class="card" style="width: 18rem;">
   <% posts.each do |post| %>
-    <li class="media mb-3">
+    <div class="card-img-top">
       <%= image_tag post.user.image.thumb50.url if post.user.image? %>
-      <div class="media-body">
-        <div>
-          <%= link_to post.user.name, user_path(post.user) %> <span class="text-muted">posted at <%= post.created_at %></span>
-        </div>
-        <div>
-          <p><%= post.menu %>×<%= post.weight %>×<%= post.counts %>×<%= post.set %><p>
-          <%= post.comment %>
-          <span class="text-muted">posted at <%= post.created_at %></span>
-        </div>
+    </div>  
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><%= post.menu %>×<%= post.weight %>kg×<%= post.counts %>reps×<%= post.set %>set</li>
+      <li class="list-group-item"><%= post.comment %></li>
+    </ul>
+
         <div class='btn-group'>
           <% if current_user == post.user %>
             <%= link_to 'Delete', post, method: :delete, data: { confirm: 'you sure' }, class: 'btn btn-danger btn-sm' %>
@@ -32,4 +29,4 @@
       </div>
     </li>
   <% end %>
-</ul>
+</div>

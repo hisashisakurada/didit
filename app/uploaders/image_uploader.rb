@@ -3,10 +3,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
   version :thumb do 
-   process resize_to_fit: [300, 200] 
+   process resize_to_fit: [400, 400] 
  end 
 version :thumb50 do 
-  process resize_to_fit: [200, 100] 
+  process resize_to_fit: [200, 200] 
  end 
   def size_range
     1..10.megabytes
