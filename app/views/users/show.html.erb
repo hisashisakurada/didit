@@ -1,18 +1,23 @@
-<div class="row">
-  <div class="pull-left">
+<div class='container'>
+  
+  <div class="row">
+    <div class='col-lg-5 mb-5'>
       <%= image_tag @user.image.thumb.url if @user.image? %>
+    </div>
+    <div class='col-lg-7'>
+      <p><%= @user.name %></p>
+      <p>Profile<%= @user.profile %></p>
+      <p>Post<%= @user.posts.count %>件</p>
+    </div>
+    
+  <div class="row">
+    <div class='col-sm-12'>
+        <ul class="nav nav-tabs">
+          <li class="nav-item"><a href="<%= likes_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(likes_user_path(@user)) %>">Likes <span class="badge badge-secondary"><%= @count_favposts %></span></a></li>
+          <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= 'active' if current_page?(user_path(@user)) %>">User`s Posts  <span class="badge badge-secondary"><%= @count_posts %></span></a></li>
+        </ul>
+        <%= render 'posts/posts', posts: @posts %>
+    </div>
   </div>
-  <div class="pull-left">
-    <p class="lead"><%= @user.name %></p>
-    <p>Profile<%= @user.profile %></p>
-    <p>Post<%= @user.posts.count %>件</p>
-  </div>
-
-  <div class="col-sm-8">
-    <ul class="nav nav-tabs nav-justified mb-3">
-      <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= 'active' if current_page?(user_path(@user)) %>">Posts  <span class="badge badge-secondary"><%= @count_posts %></span></a></li>
-      <li class="nav-item"><a href="<%= likes_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(likes_user_path(@user)) %>">Likes <span class="badge badge-secondary"><%= @count_favposts %></span></a></li>
-    </ul>
-    <%= render 'posts/posts', posts: @posts %> 
-  </div>
+  
 </div>

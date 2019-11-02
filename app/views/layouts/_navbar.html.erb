@@ -1,22 +1,26 @@
-<header class="mb-4">
+<header class="mb-5">
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
       <span class="navbar-toggler-icon"></span>
     </button>
     
     <div class='collapse navbar-collapse' id="navbarSupportedContent">
-      <ul class="navbar-nav">
+      <div class="navbar-nav">
         <% if logged_in? %>
-          <li class="navbar-brand"><%= link_to 'Didit.', posts_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to 'New post', new_post_path(current_user), class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to 'My page', user_path(current_user) , class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to 'Log out', logout_path, method: :delete, class: 'nav-link' %></li>
+          <div class="d-flex bd-highlight mb-3">
+            <div class="p-2 bd-highlight"><%= link_to 'Didit.', posts_path, class: 'nav-link' %></div>
+            <div class="p-2 bd-highlight"><%= link_to 'New post', new_post_path(current_user), class: 'nav-link' %></div>
+            <div class="p-2 bd-highlight"><%= link_to 'My page', user_path(current_user) , class: 'nav-link' %></div>
+            <div class="p-2 bd-highlight"><%= link_to 'Log out', logout_path, method: :delete, class: 'nav-link' %></div>
+          </div>
         <% else %>
-          <li class="navbar-brand"><%= link_to 'Didit.', posts_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to 'Signup', signup_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to 'Login', login_path, class: 'nav-link' %></li>
+          <div class="d-flex bd-highlight mb-3">
+            <div class="p-2 bd-highlight"><%= link_to 'Didit.', posts_path, class: 'nav-link' %></div>
+            <div class="p-2 bd-highlight"><%= link_to 'Signup', signup_path, class: 'nav-link' %></div>
+            <div class="p-2 bd-highlight"><%= link_to 'Login', login_path, class: 'nav-link' %></div>
+          </div>
         <% end %>
-      </ul>
+      </div>
     </div>
   </nav>
 </header>

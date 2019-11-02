@@ -1,12 +1,10 @@
 class UsersController < ApplicationController
   before_action :require_user_logged_in, only: [:show, :likes]
 
-  def index
-  end
-
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.order(id: :desc).page(params[:page])
+    @favposts = @user.favposts.order(id: :desc).page(params[:page])
     counts(@user)
   end
 
@@ -22,17 +20,17 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      flash[:success] = 'User Registered'
+      flash[:success] = 'ユーザ登録しました。'
       redirect_to @user
     else
-      flash[:danger] = 'User registration failed'
+      flash[:danger] = 'ユーザ登録に失敗しました。'
       render :new
     end
   end
 
   def likes
     @user = User.find(params[:id])
-    @favposts = @user.favposts.page(params[:page])
+    @favposts = @user.favposts.order(id: :desc).page(params[:page])
     counts(@user)
   end
 

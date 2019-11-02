@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :correct_user, only: [:destroy]
   
   def index
-    @posts = Post.all
+    @posts = Post.all.order(id: :desc)
   end
 
   def new
@@ -13,11 +13,11 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      flash[:success] = 'メッセージの投稿に成功しました'
+      flash[:success] = 'メッセージの投稿に成功しました。'
       redirect_to root_path
     else
       @posts = current_user.feed_posts.page(params[:page])
-      flash.now[:danger] = 'failed to post'
+      flash.now[:danger] = 'メッセージの投稿に失敗しました。'
       render 'toppages/index'
     end
   end
@@ -40,4 +40,5 @@ class PostsController < ApplicationController
       redirect_to root_url
     end
   end
+  
 end

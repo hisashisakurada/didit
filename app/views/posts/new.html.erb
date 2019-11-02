@@ -1,29 +1,35 @@
-<%= form_with(model: @post, local: true) do |f| %>
+<div class="container">
+  <%= form_with(model: @post, local: true) do |f| %>
     <%= render 'layouts/error_messages', model: f.object %>
       <div class="form-group">
-        <%= f.label :menu, 'Menu' %>
-        <%= f.text_field :menu, :placeholder => "Enter menu.example:Front Squat", class: 'form-control' %>
+        
+        <div class="row border">
+          <div class='col-5'>
+            <%= f.text_field :menu, :placeholder => 'Enter menu.', class: 'form-control'%>
+          </div>
+          <p>×</p>
+          <div class='col-2'>
+            <%= f.number_field :weight, :placeholder => "Enter weight/kg.", class: 'form-control'%>
+          </div>
+          <p>×</p>
+          <div class='col-2'>
+            <%= f.number_field :counts, :placeholder => "Enter reps.", class: 'form-control'%>
+          </div>
+          <p>×</p>
+          <div class='col-2'>
+            <%= f.number_field :set, :placeholder => "Enter set.", class: 'form-control'%>
+          </div>
+        </div>
+        
+        <div class='row border mb-3'>
+          <%= f.text_field :comment, :placeholder => "Enter comment.", class: 'form-control' %>
+        </div>
+        
+        <div class='row'>
+          <div class='offset-sm-9 col-sm-3'>
+            <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+          </div>
+        </div>
       </div>
-
-      <div class="form-group">
-        <%= f.label :weight, 'Weight' %>
-        <%= f.number_field :weight, :placeholder => "Enter weight(kg or lb).example:80", class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :counts, 'Counts'%>
-        <%= f.number_field :counts, :placeholder => "Enter reps. example:8", class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :set, 'Set' %>
-        <%= f.number_field :set, :placeholder => "Enter set.example:5", class: 'form-control' %>
-      </div>
-      
-      <div class="form-group">
-        <%= f.label :comment, 'Comment' %>
-        <%= f.text_field :comment, :placeholder => "Enter comment.example:rest 3min.", class: 'form-control' %>
-      </div>
-
-        <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
   <% end %>
+</div>

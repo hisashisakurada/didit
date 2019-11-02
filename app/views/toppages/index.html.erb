@@ -1,9 +1,11 @@
 <% if logged_in? %>
   <%= render 'posts/posts', posts: @posts %> 
 <% else %>
-  <h1 class="display-3 text-sm-left">Didit.</h1>
-    <p class="text-sm-left">Post today`s workout.</p>
-  <div class="text-center">
+  <div class='col-sm-6'>
+    <h1 class="display-4">Didit.</h1>
+    <p class="font-weight-light">Post today`s workout.</p>
+  </div>
+  <div style='margin: 100px; padding-left: 100px;'>
     <%= link_to 'Show post', posts_path, :style=>"color:gray;"  %>
   </div>
 <% end %>
