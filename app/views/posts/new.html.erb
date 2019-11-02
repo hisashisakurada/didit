@@ -9,15 +9,15 @@
           </div>
           <p>×</p>
           <div class='col-2'>
-            <%= f.number_field :weight, :placeholder => "Enter weight/kg.", class: 'form-control'%>
+            <%= f.number_field :weight, min: '0', max: '280', :placeholder => "Enter weight/kg.", class: 'form-control' %>
           </div>
           <p>×</p>
           <div class='col-2'>
-            <%= f.number_field :counts, :placeholder => "Enter reps.", class: 'form-control'%>
+            <%= f.number_field :counts, min: '1', max: '1000', :placeholder => "Enter reps.", class: 'form-control'%>
           </div>
           <p>×</p>
           <div class='col-2'>
-            <%= f.number_field :set, :placeholder => "Enter set.", class: 'form-control'%>
+            <%= f.number_field :set, min: '1', max: '50', :placeholder => "Enter set.", class: 'form-control'%>
           </div>
         </div>
         
