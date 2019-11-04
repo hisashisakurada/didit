@@ -33,6 +33,3 @@ module Didit
   end
 end
 
-#testdahyon
-#test2
-#test3
