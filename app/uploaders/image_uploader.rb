@@ -10,7 +10,15 @@ version :thumb50 do
   def size_range
     1..10.megabytes
   end
-
+  
+  if Rails.env.development?
+    storage :fog
+  elsif Rails.env.test?
+    storage :file
+  else
+    storage :fog
+  end
+  
   def store_dir
     "uploads/{user.class.to_s.underscore}/{image}/{user.id}"
   end
