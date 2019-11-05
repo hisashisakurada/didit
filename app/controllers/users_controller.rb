@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:show, :likes]
+  before_action :require_user_logged_in, only: [:show, :likes, :index, :destroy]
 
+  def index
+    @users = User.all
+  end
+  
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.order(id: :desc).page(params[:page])
@@ -28,6 +32,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user.destroy
+    flash[:success] = 'ユーザを削除しました。'
+    redirect_back(fallback_location: root_path)
+  end
+  
   def likes
     @user = User.find(params[:id])
     @favposts = @user.favposts.order(id: :desc).page(params[:page])
